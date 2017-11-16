@@ -33,7 +33,7 @@ class NoteItemComponent extends Component {
 		let styles = {
 			listItem: {
 				flexDirection: 'row',
-				//height: 40,
+				height: 42,
 				borderBottomWidth: 1,
 				borderBottomColor: theme.dividerColor,
 				alignItems: 'flex-start',
@@ -113,7 +113,7 @@ class NoteItemComponent extends Component {
 						checked={checkboxChecked}
 						onChange={(checked) => this.todoCheckbox_change(checked)}
 					/>
-					<Text style={listItemTextStyle}>{note.title}</Text>
+					<Text numberOfLines={1} style={listItemTextStyle}>{note.title}</Text>
 				</View>
 			</TouchableHighlight>
 		);

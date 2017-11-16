@@ -5,6 +5,7 @@ const { Log } = require('lib/log.js');
 const { _ } = require('lib/locale.js');
 const { Checkbox } = require('lib/components/checkbox.js');
 const { NoteItem } = require('lib/components/note-item.js');
+const { ItemList } = require('lib/components/ItemList.js');
 const { reg } = require('lib/registry.js');
 const { Note } = require('lib/models/note.js');
 const { Setting } = require('lib/models/setting.js');
@@ -81,9 +82,9 @@ class NoteListComponent extends Component {
 		});
 
 		// Make sure scroll position is reset when switching from one folder to another or to a tag list.
-		if (this.rootRef_ && newProps.notesSource != this.props.notesSource) {
-			this.rootRef_.scrollTo({ x: 0, y: 0, animated: false });
-		}
+		// if (this.rootRef_ && newProps.notesSource != this.props.notesSource) {
+		// 	this.rootRef_.scrollTo({ x: 0, y: 0, animated: false });
+		// }
 	}
 
 	render() {
@@ -91,15 +92,24 @@ class NoteListComponent extends Component {
 
 		if (this.state.dataSource.getRowCount()) {
 			return (
-				<ListView
-					ref={(ref) => this.rootRef_ = ref}
-					dataSource={this.state.dataSource}
-					renderRow={(note) => {
-						return <NoteItem note={note}/>
+				<ItemList
+					itemHeight={42}
+					items={this.props.items}
+					itemRenderer={(note) => {
+						return <NoteItem key={note.id + '_' + note.todo_completed} note={note}/>
 					}}
-					enableEmptySections={true}
 				/>
 			);
+			// return (
+			// 	<ListView
+			// 		ref={(ref) => this.rootRef_ = ref}
+			// 		dataSource={this.state.dataSource}
+			// 		renderRow={(note) => {
+			// 			return <NoteItem note={note}/>
+			// 		}}
+			// 		enableEmptySections={true}
+			// 	/>
+			// );
 		} else {
 			const noItemMessage = _('There are currently no notes. Create one by clicking on the (+) button.');
 			return <Text style={this.styles().noItemMessage} >{noItemMessage}</Text>;
