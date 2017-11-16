@@ -90,7 +90,9 @@ class NoteItemComponent extends Component {
 		const onCheckboxChange = this.props.onCheckboxChange;
 		const theme = themeStyle(this.props.theme);
 
-		let checkboxStyle = !isTodo ? { display: 'none' } : { color: theme.color };
+		// IOS: Setting display: none for the checkbox makes the app freeze
+		// Maybe related to RN GitHub #15941
+		let checkboxStyle = !isTodo ? { } : { color: theme.color };
 
 		if (isTodo) {
 			checkboxStyle.paddingRight = 10;

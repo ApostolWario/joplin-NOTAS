@@ -37,12 +37,14 @@ class ScreenHeaderComponent extends Component {
 				flexDirection: 'row',
 				backgroundColor: theme.raisedBackgroundColor,
 				alignItems: 'center',
-				shadowColor: '#000000',
-				elevation: 5,
+
+				// IOS: Generates a warning about the shadows
+				//shadowColor: '#000000',
+				//elevation: 5,
 			},
 			folderPicker: {
 				flex:1,
-				color: theme.raisedHighlightedColor,
+				//color: theme.raisedHighlightedColor,
 				// Note: cannot set backgroundStyle as that would remove the arrow in the component
 			},
 			divider: {

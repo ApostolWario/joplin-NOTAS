@@ -52,7 +52,9 @@ class NoteBodyViewer extends Component {
 		const html = this.mdToHtml_.render(note ? note.body : '', this.props.webViewStyle, mdOptions);
 
 		let webViewStyle = {}
-		webViewStyle.opacity = this.state.webViewLoaded ? 1 : 0.01;
+
+		// IOS: onLoadEnd() is not triggered on iOS so the view is never visible
+		webViewStyle.opacity = 1; //this.state.webViewLoaded ? 1 : 0.01;
 
 		return (
 			<View style={style}>
